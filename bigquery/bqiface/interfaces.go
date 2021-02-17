@@ -81,6 +81,8 @@ type Loader interface {
 	JobIDConfig() *bigquery.JobIDConfig
 	SetLoadConfig(LoadConfig)
 	Run(context.Context) (Job, error)
+	// このオプションを設定する手段を見つけられず、仕方がないので本家のコードをforkして機能追加
+	SetWriteDisposition(param bigquery.TableWriteDisposition)
 
 	embedToIncludeNewMethods()
 }

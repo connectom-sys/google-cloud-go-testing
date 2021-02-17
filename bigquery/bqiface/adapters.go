@@ -178,6 +178,11 @@ func (l loader) Run(ctx context.Context) (Job, error) {
 	return adaptJob(l.Loader.Run(ctx))
 }
 
+// このオプションを設定する手段を見つけられず、仕方がないので本家のコードをforkして機能追加
+func (l loader) SetWriteDisposition(param bigquery.TableWriteDisposition) {
+	l.Loader.LoadConfig.WriteDisposition = param
+}
+
 func (q query) JobIDConfig() *bigquery.JobIDConfig   { return &q.Query.JobIDConfig }
 func (q query) Run(ctx context.Context) (Job, error) { return adaptJob(q.Query.Run(ctx)) }
 
